@@ -2,8 +2,16 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  //페이지 이동하는 방법
+  //1.Link : 바로 눌러서 가면 될떄
+  //2.useNavigate : 함수안에서 써야할떄
+  const navigate = useNavigate();
+  const goToLogin = () => {
+    navigate('/login');
+  };
   const menuList = [
     '여성',
     'Divided',
@@ -17,7 +25,7 @@ const Navbar = () => {
   return (
     <div>
       <div>
-        <div className="login-button">
+        <div onClick={goToLogin} className="login-button">
           <FontAwesomeIcon icon={faUser} />
           <div>로그인</div>
         </div>
@@ -35,9 +43,15 @@ const Navbar = () => {
             <li>{menu}</li>
           ))}
         </ul>
-        <div>
-          <FontAwesomeIcon icon={faSearch} />
-          <input type="text" />
+        <div className="search-box">
+          <div className="input-icon-box">
+            <FontAwesomeIcon className="icon" icon={faSearch} />
+            <input
+              className="input-box"
+              placeholder="     제품검색"
+              type="text"
+            />
+          </div>
         </div>
       </div>
     </div>

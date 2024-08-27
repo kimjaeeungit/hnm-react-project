@@ -2,6 +2,8 @@
   display: flex;
   justify-content: flex-end;
   margin: 20px;
+  /*커서 올리면 커서 모양 바꾸기*/
+  cursor: pointer;
 }
 
 .nav-section {
@@ -11,6 +13,7 @@
 
 .menu-list {
   display: flex;
+  justify-content: center;
   list-style-type: none;
 }
 
@@ -19,6 +22,55 @@
 }
 
 .menu-area {
-  display: flex;
-  justify-content: center;
+  position: relative;
+}
+
+.search-box {
+  border: none;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-60%);
+}
+
+.input-icon-box {
+  position: relative;
+}
+
+.icon {
+  transform: translateX(90%);
+}
+.input-box {
+  border: none;
+  border-bottom: 3px solid red;
+  margin-right: 20px;
+}
+
+.choice {
+  font-size: 10px;
+}
+
+.new {
+  font-size: 11px;
+}
+
+.card-img {
+  width: 100px;
+}
+
+.card-wrap:hover {
+  transform: scale(1.1);
+}
+
+.card-wrap {
+  padding-bottom: 23px;
+}
+
+.card-font {
+  font-size: 13.5px;
+}
+
+.login-border {
+  border: 5px solid rgb(184, 181, 181);
+  padding: 30px;
 }
