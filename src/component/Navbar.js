@@ -4,14 +4,22 @@ import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = ({ setAuthenticate, authenticate }) => {
   //페이지 이동하는 방법
   //1.Link : 바로 눌러서 가면 될떄
   //2.useNavigate : 함수안에서 써야할떄
   const navigate = useNavigate();
   const goToLogin = () => {
-    navigate('/login');
+    if (authenticate === true) {
+      setAuthenticate(false);
+    } else {
+      navigate('/login');
+    }
   };
+  const goToMain = () => {
+    navigate('/');
+  };
+
   const menuList = [
     '여성',
     'Divided',
@@ -22,15 +30,25 @@ const Navbar = () => {
     'Sale',
     '지속가능성',
   ];
+  const search = (event) => {
+    if (event.key === 'Enter') {
+      // 입력한 검색어를 읽어와서
+      let keyword = event.target.value;
+      console.log('keyword', keyword);
+      // url을 바꿔준다
+      navigate(`/?q=${keyword}`);
+    }
+  };
+
   return (
     <div>
       <div>
         <div onClick={goToLogin} className="login-button">
           <FontAwesomeIcon icon={faUser} />
-          <div>로그인</div>
+          <div>{authenticate ? '로그아웃' : '로그인'}</div>
         </div>
       </div>
-      <div className="nav-section">
+      <div onClick={goToMain} className="nav-section">
         <img
           width={100}
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVtA9XSS-40ippEuRO7BNQmZrKorOktzBpAg&s"
@@ -48,8 +66,8 @@ const Navbar = () => {
             <FontAwesomeIcon className="icon" icon={faSearch} />
             <input
               className="input-box"
-              placeholder="     제품검색"
               type="text"
+              onKeyPress={(event) => search(event)}
             />
           </div>
         </div>

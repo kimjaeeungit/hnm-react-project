@@ -5,7 +5,6 @@ const ProductCard = ({ item }) => {
   const navigate = useNavigate();
   const showDetail = () => {
     navigate(`/product/${item?.id}`);
-    console.log('item', item);
   };
   return (
     <div className="card-wrap" onClick={showDetail}>

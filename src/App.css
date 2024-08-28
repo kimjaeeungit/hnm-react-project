@@ -9,6 +9,7 @@
 .nav-section {
   display: flex;
   justify-content: center;
+  cursor: pointer;
 }
 
 .menu-list {
@@ -28,22 +29,21 @@
 .search-box {
   border: none;
   position: absolute;
-  right: 0;
+  right: 25px;
   top: 50%;
   transform: translateY(-60%);
 }
 
 .input-icon-box {
   position: relative;
+  border-bottom: 3px solid black;
 }
 
-.icon {
-  transform: translateX(90%);
-}
 .input-box {
   border: none;
-  border-bottom: 3px solid red;
+
   margin-right: 20px;
+  padding-left: 20px;
 }
 
 .choice {
@@ -73,4 +73,28 @@
 .login-border {
   border: 5px solid rgb(184, 181, 181);
   padding: 30px;
+}
+
+.select-box-detail {
+  width: 200px;
+  padding-bottom: 15px;
+}
+
+.conscious-choice {
+  font-size: 12px;
+  padding-bottom: 15px;
+}
+
+.price-detail {
+  font-size: 17px;
+  padding-bottom: 10px;
+}
+
+.title-detail {
+  font-size: 17px;
+  padding-bottom: 10px;
+}
+
+.input-box:focus {
+  outline: none;
 }
