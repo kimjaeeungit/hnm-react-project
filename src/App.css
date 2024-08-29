@@ -1,3 +1,14 @@
+@media (min-width: 760px) {
+  .main {
+    max-width: 800px;
+  }
+}
+@media (min-width: 992px) {
+  .main {
+    max-width: 1000px;
+  }
+}
+
 .login-button {
   display: flex;
   justify-content: flex-end;
