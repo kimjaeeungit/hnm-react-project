@@ -1,12 +1,9 @@
-@media (min-width: 760px) {
-  .main {
-    max-width: 800px;
-  }
+.col-lg-3 {
+  width: 25% !important;
 }
-@media (min-width: 992px) {
-  .main {
-    max-width: 1000px;
-  }
+
+.container {
+  margin-top: 30px;
 }
 
 .login-button {
@@ -27,6 +24,7 @@
   display: flex;
   justify-content: center;
   list-style-type: none;
+  margin-bottom: 0px;
 }
 
 .menu-list li {
@@ -66,7 +64,7 @@
 }
 
 .card-img {
-  width: 100px;
+  width: 100%;
 }
 
 .card-wrap:hover {
@@ -108,4 +106,91 @@
 
 .input-box:focus {
   outline: none;
+}
+
+/* 노멀라이즈 시작 */
+body,
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none; /* 해당 태그의 list-style을 none으로 하는 것으로 ●을 제거한다 */
+}
+/* 노멀라이즈 끝 */
+
+/* 사이드바의 너비와 높이를 변수를 통해 통제 */
+:root {
+  --side-bar-width: 270px;
+  --side-bar-height: 90vh;
+}
+.side-bar {
+  position: fixed; /* 스크롤을 따라오도록 지정 */
+  background-color: black;
+  width: var(--side-bar-width);
+  min-height: var(
+    --side-bar-height
+  ); /* 사이드바의 높이를 전체 화면 높이의 90%로 지정 */
+  margin-top: calc(
+    (100vh - var(--side-bar-height)) / 2
+  ); /* 사이드바 위와 아래의 마진을 동일하게 지정 */
+}
+
+/* 모든 메뉴의 a에 속성값 부여 */
+.side-bar ul > li {
+  display: block;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-left: 50px;
+}
+/* 자식의 position이 absolute일 때 자식을 영역 안에 가두어 준다 */
+.side-bar > ul > li {
+  position: relative;
+}
+/* 모든 메뉴가 마우스 인식 시 반응 */
+.side-bar ul > li:hover {
+  background-color: #555;
+  border-bottom: 1px solid #999;
+}
+/* 사이드바 너비의 80%만큼 왼쪽으로 이동 */
+.side-bar {
+  border-radius: 20px;
+  transform: translate(
+    calc(var(--side-bar-width) * -0.8),
+    0
+  ); /* X축 이동, Y축 고정 */
+  transition: 0.5s;
+}
+
+/* 마우스 인식 시 원래의 위치로 이동 */
+.side-bar:hover {
+  transform: translate(
+    -20px,
+    0
+  ); /* 둥근 모서리의 너비만큼 X축 이동, Y축 고정 */
+}
+
+@media (max-width: 1220px) {
+  .container {
+    width: 96%;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+  div.menu-area {
+    display: none;
+  }
+  .col-lg-3 {
+    width: 32% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .col-lg-3 {
+    width: 50% !important;
+  }
 }

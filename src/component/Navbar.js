@@ -3,8 +3,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
+import Sidebar from './Sidebar';
 
 const Navbar = ({ setAuthenticate, authenticate }) => {
+  const menuList = [
+    '여성',
+    'Divided',
+    '남성',
+    '신생아/유아',
+    '아동',
+    'H&M Home',
+    'Sale',
+    '지속가능성',
+  ];
   //페이지 이동하는 방법
   //1.Link : 바로 눌러서 가면 될떄
   //2.useNavigate : 함수안에서 써야할떄
@@ -20,16 +31,6 @@ const Navbar = ({ setAuthenticate, authenticate }) => {
     navigate('/');
   };
 
-  const menuList = [
-    '여성',
-    'Divided',
-    '남성',
-    '신생아/유아',
-    '아동',
-    'H&M Home',
-    'Sale',
-    '지속가능성',
-  ];
   const search = (event) => {
     if (event.key === 'Enter') {
       // 입력한 검색어를 읽어와서
@@ -43,6 +44,7 @@ const Navbar = ({ setAuthenticate, authenticate }) => {
   return (
     <div>
       <div>
+        <Sidebar menuList={menuList} />
         <div onClick={goToLogin} className="login-button">
           <FontAwesomeIcon icon={faUser} />
           <div>{authenticate ? '로그아웃' : '로그인'}</div>
