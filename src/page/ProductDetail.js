@@ -2,20 +2,23 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
+import { productAction } from '../redux/actions/productAction';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ProductDetail = () => {
+  const product = useSelector((state) => state.product.productDetail);
   // url ID 가져오기
   let { id } = useParams();
-  const [product, setProduct] = useState(null);
+
+  const dispatch = useDispatch();
   const getProductDetail = async () => {
-    let url = `https://my-json-server.typicode.com/kimjaeeungit/hnm-react-project/products?q=${id}`;
-    let response = await fetch(url);
-    let data = await response.json();
-    setProduct(data);
+    console.log('ididid', id);
+    dispatch(productAction.getProductDetail(id));
   };
 
   useEffect(() => {
     getProductDetail();
+    console.log('product', product);
   }, []);
   return (
     <Container>

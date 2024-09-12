@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
+import { useSelector, useDispatch } from 'react-redux';
+import { authenticateAction } from '../redux/actions/authenticateAction';
 
-const Navbar = ({ setAuthenticate, authenticate }) => {
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const authenticate = useSelector((state) => state.auth.authenticate);
+
   const menuList = [
     '여성',
     'Divided',
@@ -22,15 +27,20 @@ const Navbar = ({ setAuthenticate, authenticate }) => {
   const navigate = useNavigate();
   const goToLogin = () => {
     if (authenticate === true) {
-      setAuthenticate(false);
+      dispatch(authenticateAction.logout(authenticate));
     } else {
       navigate('/login');
     }
+
+    navigate('/login');
   };
   const goToMain = () => {
     navigate('/');
   };
 
+  useEffect(() => {
+    console.log('authenticateauthenticateauthenticate', authenticate);
+  }, [authenticate]);
   const search = (event) => {
     if (event.key === 'Enter') {
       // 입력한 검색어를 읽어와서
