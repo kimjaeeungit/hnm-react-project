@@ -16,7 +16,6 @@ const ProductAll = () => {
   };
 
   useEffect(() => {
-    console.log('productList22222222222222', productList);
     getProducts();
   }, [query]);
 

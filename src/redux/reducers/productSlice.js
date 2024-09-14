@@ -6,19 +6,33 @@ let initialState = {
   error: null,
 };
 
+//ACTION부분
 export const fetchProducts = createAsyncThunk(
   'product/fetchAll',
   async (searchQuery, thunkApi) => {
     try {
       let url = `https://my-json-server.typicode.com/kimjaeeungit/hnm-react-project/products?q=${searchQuery}`;
       let response = await fetch(url);
-      let data = await response.json();
-      return data;
+      return await response.json();
     } catch (error) {
       thunkApi.rejectWithValue(error.message);
     }
   }
 );
+
+export const fetchProductDetail = createAsyncThunk(
+  'product/fetchDetail',
+  async (id, thunkApi) => {
+    try {
+      let url = `https://my-json-server.typicode.com/kimjaeeungit/hnm-react-project/products/${id}`;
+      let response = await fetch(url);
+      return await response.json();
+    } catch (error) {
+      thunkApi.rejectWithValue(error.message);
+    }
+  }
+);
+
 // function productReducer(state = initialState, action) {
 //   let { type, payload } = action;
 //   switch (type) {
@@ -40,9 +54,9 @@ const productSlice = createSlice({
     // getAllProducts(state, action) {
     //   state.productList = action.payload.data;
     // },
-    getProductDetail(state, action) {
-      state.productDetail = action.payload.data;
-    },
+    // getProductDetail(state, action) {
+    //   state.productDetail = action.payload.data;
+    // },
   },
   extraReducers: (builder) => {
     builder
@@ -52,9 +66,19 @@ const productSlice = createSlice({
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.isLoading = false;
         state.productList = action.payload;
-        console.log('state.productList', action);
       })
       .addCase(fetchProducts.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
+      })
+      .addCase(fetchProductDetail.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchProductDetail.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.productDetail = action.payload;
+      })
+      .addCase(fetchProductDetail.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
       });

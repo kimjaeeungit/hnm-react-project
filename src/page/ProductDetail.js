@@ -1,19 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap';
-import { productAction } from '../redux/actions/productAction';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchProductDetail } from '../redux/reducers/productSlice';
 
 const ProductDetail = () => {
   const product = useSelector((state) => state.product.productDetail);
   // url ID 가져오기
   let { id } = useParams();
-
   const dispatch = useDispatch();
-  const getProductDetail = async () => {
-    console.log('ididid', id);
-    dispatch(productAction.getProductDetail(id));
+  const getProductDetail = () => {
+    dispatch(fetchProductDetail(id));
   };
 
   useEffect(() => {
